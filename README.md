@@ -41,7 +41,7 @@ This will generate a flake.nix and a home.nix file in ~/.config/home-manager
 - `~/.config/home-manager/flake.nix`
 
 ```shell
-home-manager switch
+home-manager switch --flake .
 ```
 
 `nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";`
