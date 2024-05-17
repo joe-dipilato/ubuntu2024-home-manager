@@ -45,3 +45,8 @@ home-manager switch
 ```
 
 `nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";`
+
+```shell
+git config --global user.name "Joe DiPilato"
+git config --global user.email "joe.dipilato@mongodb.com"
+```
