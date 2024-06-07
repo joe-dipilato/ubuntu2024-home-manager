@@ -46,13 +46,10 @@
     yq #
     git #
     jujutsu # [git] supplement (jj)
-    # gh # github
+    gh # github
     lsof #
     nvd # nix wrapper
-    delta # diff tool
-    # dunk another git diff
     file # file type display
-    tmux
 
     ############################################################
     # Basic Utilities
@@ -62,9 +59,6 @@
     virt-manager #
     libvirt #
     xdg-utils #
-    grim #
-    slurp #
-    # wl-copy
     pandoc # doc converter
     # home-manager # Nix Home Manager
     python312 #
@@ -88,10 +82,9 @@
     kitty # terminal editor
     fzf # fuzzy finder
     fzf-zsh # .
-    # alacrity
     # TODO: zsh-syntax-highlighting Zsh Syntax Highlighting - Fish shell like syntax highlighting for Zsh
     # zsh-navigation-tools
-    # zsh-fzf-tab
+    zsh-fzf-tab
     # zsh-forgit
     # zsh-fast-syntax-highlighting
     # zsh-completions
@@ -111,8 +104,6 @@
     # TODO: bmon - Bandwidth Monitor
     helmfile
     # TODO: ngrok - Reverse proxy for sharing localhost
-    # TODO: speedtest-cli - Command line speed test utility
-    # TODO: speedtest-rs
     # TODO: Termshark - A terminal user-interface for tshark, inspired by Wireshark
     # TODO: Trippy - combines the functionality of traceroute and ping and is designed to assist with the analysis of networking issues
 
@@ -126,15 +117,14 @@
     # kompose
     kubernetes-helm
     # cri-tools
-    # etcd
     # cfssl
-    # podman # container tool
+    podman # container tool
+    podman-tui # podman tui
     # ctop # Container metrics and monitoring
     # TODO: kdash - Kubernetes dashboard app
     # dive # A tool for exploring a docker image, layer contents, and discovering ways to shrink the size of your Docker/OCI image
     # TODO: Kubectx - Faster way to switch between clusters and namespaces in kubectl
     # TODO: kubie is an alternative to kubectx, kubens and the k on prompt modification script
-    # podman-tui # podman tui
     # calico-cni-plugin
     # calicoctl
     # confd-calico
@@ -150,28 +140,18 @@
     ############################################################
     dust # terminal disk usage tool
     # tldr # [man] supplemental tool
-    zellij # [tmux] replacement
     # ranger
     neofetch # system stats
     onefetch # git repo stats
     cpufetch # cpu stats
-    starfetch # star stats
     btop # [top] replacement
     lazygit # git tool
-    # NOTES: https://awesomeopensource.com
-    # NOTES: https://github.com/mayfrost/guides/blob/master/ALTERNATIVES.md
     angle-grinder # allows you to parse, aggregate, sum, average, min/max, percentile, and sort your data
     aria2 # downloader
     # TODO: Austin / austin-tui - pyython profiler
-    # TODO: Brogue - is a Roguelike game
-    bluetuith # TUI-based bluetooth connection manager, which can interact with bluetooth adapters and devices
-    browsh # text-based browser rendered to TTYs and browsers
     calcure # Modern TUI calendar and task manager with customizable interface
     # TODO: buku - Bookmark manager
-    # TODO: Carbonyl is a Chromium based browser built to run in a terminal
-    # TODO: Chafa - converts image data, into ANSI/Unicode
     # TODO: clinfo
-    # TODO: cmdpxl: a totally practical command-line image editor
     # TODO: ddgr - Search the web from the terminal
     difftastic # (vs diff)
     diff-so-fancy # (vs diff)
@@ -194,11 +174,8 @@
     # TODO: gdu
     # TODO: glances - Resource monitor + web and API
     # TODO: glow = markdown terminal view
-    # TODO: GoAccess is an open source real-time web log analyzer and interactive viewers
     gpg-tui # Terminal User Interface for GnuPG
     gping # (better ping)
-    # TODO: Grafterm - like a simplified and minimalist version of Grafana for terminal
-    # TODO: Harlequin / LAZYSQL - The SQL IDE for Your Terminal.
     # TODO: Hex Editors: HT Editor -> biew -> dhex -> hexedit
     # TODO: Hexabyte - tui hex editor
     htmlq # (like jq, but for HTML)
@@ -214,23 +191,18 @@
     # TODO: miller (“like awk/sed/cut/join/sort for CSV/TSV/JSON/JSON lines”)
     most # better less
     # TODO: mtr - traceroute
-    # TODO: mutt - Email client
     # TODO: neoss aims to replace usual ss command for basic usage. It provides a list of in-use TCP and UDP sockets with their respective statistics
+    nethack
     # TODO: NetHack - dungeon crawler
-    # TODO: NVTOP - Neat Videocard TOP, a (h)top like task monitor for GPUs and accelerators
-    # TODO: opencl-info
     # play # TUI for sed awk grep
     # TODO: plocate (locate)
     procs # [ps] replacement
     # TODO: PuDB: a console-based visual debugger for Python
     rm-improved # [rm] replacement
-    # TODO: Runme is a tool that makes runbooks actually runnable
     # TODO: sclack - tui slack
-    # TODO: scli is a simple terminal user interface for Signal
     sd # [sed] replacement
     systemctl-tui # (worse than sysz?)
     sysz # A fzf terminal UI for systemctl
-    # rofi-systemd
     # TODO: topgrade
     # TODO: Torrent Tracker Scraper: Torrtux -> Torrench -> Jackett
     # TODO: tre - Directory hierarchy (better tree)
@@ -267,14 +239,13 @@
     helix # [vim] replacement
     neovim # editor
     vim # editor
-    vscode #
+    # vscode #
     alejandra # formatter
 
     ############################################################
     # Graphical
     sxiv # image viewer
-    xdg-utils
-    firefox #                    # https://github.com/notusknot/dotfiles-nix/blob/main/modules/firefox/default.nix
+    # firefox #                    # https://github.com/notusknot/dotfiles-nix/blob/main/modules/firefox/default.nix
 
     ############################################################
     # FONTS
@@ -288,10 +259,14 @@
     pavucontrol
     meson
     pipewire
-    brightnessctl
-    gparted
-    qemu_kvm
-    sddm
+    # brightnessctl
+    # gparted
+    # qemu_kvm
+    # sddm
+    #delta # diff tool
+    # dunk another git diff
+
+
   ];
 
   ################################################################################
