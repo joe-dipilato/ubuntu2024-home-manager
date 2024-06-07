@@ -50,3 +50,20 @@ home-manager switch --flake .
 git config --global user.name "Joe DiPilato"
 git config --global user.email "joe.dipilato@mongodb.com"
 ```
+
+## Update packages
+
+```shell
+nix-channel --update
+nix flake update
+home-manager switch --flake .
+```
+
+## Mount /nix from home dir
+
+```shell
+mkdir /home/ubuntu/nix
+echo "/home/ubuntu/nix /nix auto defaults,nofail,nobootwait,bind 0 2" | sudo tee -a /etc/fstab
+sudo systemctl daemon-reload
+sudo systemctl restart local-fs.target
+```
