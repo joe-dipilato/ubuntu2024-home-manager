@@ -80,7 +80,7 @@
       slurp #
       # wl-copy
       pandoc # doc converter
-      home-manager # Nix Home Manager
+      # home-manager # Nix Home Manager
       python312 #
       nixd # Nix language server
       scowl # dictionary wordlist
@@ -118,8 +118,8 @@
       ethtool
       socat
       conntrack-tools
-      ebtables
-      iptables
+      # ebtables
+      # iptables
       wavemon # is a wireless device monitoring application
       # TODO: bandwhich - Bandwidth utilization monitor
       # TODO: bmon - Bandwidth Monitor
