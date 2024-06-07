@@ -149,7 +149,7 @@
     # Terminal Apps
     ############################################################
     dust # terminal disk usage tool
-    tldr # [man] supplemental tool
+    # tldr # [man] supplemental tool
     zellij # [tmux] replacement
     # ranger
     neofetch # system stats

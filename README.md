@@ -1,5 +1,14 @@
 # ubuntu2024-home-manager
 
+## Mount /nix from home dir
+
+```shell
+mkdir /home/ubuntu/nix
+echo "/home/ubuntu/nix /nix auto defaults,nofail,nobootwait,bind 0 2" | sudo tee -a /etc/fstab
+sudo systemctl daemon-reload
+sudo systemctl restart local-fs.target
+```
+
 ## Install nix package manager
 
 ```shell
@@ -57,13 +66,5 @@ git config --global user.email "joe.dipilato@mongodb.com"
 nix-channel --update
 nix flake update
 home-manager switch --flake .
-```
-
-## Mount /nix from home dir
-
-```shell
-mkdir /home/ubuntu/nix
-echo "/home/ubuntu/nix /nix auto defaults,nofail,nobootwait,bind 0 2" | sudo tee -a /etc/fstab
-sudo systemctl daemon-reload
-sudo systemctl restart local-fs.target
+# nix-collect-garbage -d
 ```
