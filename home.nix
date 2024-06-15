@@ -3,6 +3,7 @@
   outputs,
   pkgs,
   config,
+  lib,
   ...
 }: {
 
@@ -16,6 +17,12 @@
     username = "ubuntu";
     homeDirectory = "/home/ubuntu";
     stateVersion = "23.11";
+  };
+
+  home.sessionVariables = {
+    EDITOR = "code --wait";
+    EZA_COLORS = "ex=92;1:cr=31;2:tm=2;3;9:do=94:im=95:vi=95:mu=95:lo=95:sc=32:gn=95:uR=31:gR=31:nb=2;36:nk=2;92:nm=2;33:ng=2;31:nt=2;31";
+    BAT_THEME = "Monokai Extended";
   };
 
   ################################################################################
@@ -82,14 +89,14 @@
     kitty # terminal editor
     fzf # fuzzy finder
     fzf-zsh # .
-    # TODO: zsh-syntax-highlighting Zsh Syntax Highlighting - Fish shell like syntax highlighting for Zsh
-    # zsh-navigation-tools
+    zsh-syntax-highlighting
+    zsh-navigation-tools
     zsh-fzf-tab
-    # zsh-forgit
-    # zsh-fast-syntax-highlighting
-    # zsh-completions
-    # zsh-autosuggestions
-    # zsh-autopair
+    zsh-forgit
+    zsh-fast-syntax-highlighting
+    zsh-completions
+    zsh-autosuggestions
+    zsh-autopair
 
     ############################################################
     # Networking
@@ -97,15 +104,8 @@
     ethtool
     socat
     conntrack-tools
-    # ebtables
-    # iptables
     wavemon # is a wireless device monitoring application
-    # TODO: bandwhich - Bandwidth utilization monitor
-    # TODO: bmon - Bandwidth Monitor
     helmfile
-    # TODO: ngrok - Reverse proxy for sharing localhost
-    # TODO: Termshark - A terminal user-interface for tshark, inspired by Wireshark
-    # TODO: Trippy - combines the functionality of traceroute and ping and is designed to assist with the analysis of networking issues
 
     ############################################################
     # Cluster
@@ -133,6 +133,13 @@
     # calico-kube-controllers
     # calico-pod2daemon
     # calico-typha
+    # TODO: bandwhich - Bandwidth utilization monitor
+    # TODO: bmon - Bandwidth Monitor
+    # ebtables
+    # iptables
+    # TODO: ngrok - Reverse proxy for sharing localhost
+    # TODO: Termshark - A terminal user-interface for tshark, inspired by Wireshark
+    # TODO: Trippy - combines the functionality of traceroute and ping and is designed to assist with the analysis of networking issues
 
     # https://terminaltrove.com/categories/tui/
     ############################################################
@@ -204,19 +211,14 @@
     systemctl-tui # (worse than sysz?)
     sysz # A fzf terminal UI for systemctl
     # TODO: topgrade
-    # TODO: Torrent Tracker Scraper: Torrtux -> Torrench -> Jackett
     # TODO: tre - Directory hierarchy (better tree)
-    # TODO: Usenet (File Grabber): LottaNZB -> SABnzbd -> NZBGet -> nzb -> nzbperl
     # TODO: vdpauinfo
     # TODO: vidir allows editing of the contents of a directory in a text editor
-    # TODO: Violet is a colorful TUI frontend to manage Vagrant virtual machines
     # TODO: visidata (“an interactive multitool for tabular data”)
-    # TODO: vulkan-tools
     wtf # wtfutil - personal information dashboard for your terminal # TODO: configure
     # TODO: xsv (a command line tool for csv files, from burntsushi)
     # TODO: hexyl (xxd, od)
     yewtube # forked from mps-youtube , is a Terminal based YouTube player and downloader
-    # mpv # terminal video player
     # logshark # json log viewer
     # nemu - ncurses-based TUI for QEMU
     # neoss - User-friendly and detailed socket statistics with a TUI.
@@ -231,21 +233,17 @@
     # tailspin # A log file highlighter
     # taskwarrior-tui # A terminal user interface for taskwarrior
     # tig # Text-mode interface for git
-    # wiki-tui # A fast Wikipedia CLI/TUI client
-    # youtube-tui # An aesthetically pleasing YouTube TUI written in Rust
 
     ############################################################
     # Editors
     helix # [vim] replacement
     neovim # editor
     vim # editor
-    # vscode #
     alejandra # formatter
 
     ############################################################
     # Graphical
     sxiv # image viewer
-    # firefox #                    # https://github.com/notusknot/dotfiles-nix/blob/main/modules/firefox/default.nix
 
     ############################################################
     # FONTS
@@ -276,13 +274,14 @@
   home.file = {
     ".sops.yaml".source = ./config/sops.yaml;
   };
+  # Hack to allow setting permissions
+  home.file.".cache/known_hosts".source = ./config/known_hosts;
+  home.file.".cache/known_hosts".onChange = ''
+    install -m 600 ${config.home.homeDirectory}/.cache/known_hosts ${config.home.homeDirectory}/.ssh/user_known_hosts
+  '';
 
   xdg.configFile = {
     "kitty/kitty.session.conf".source = ./config/kitty.session.conf;
-  };
-
-  home.sessionVariables = {
-    EDITOR = "code";
   };
 
   systemd.user.startServices = "sd-switch";
@@ -292,8 +291,14 @@
   ################################################################################
   programs = {
     home-manager.enable = true; # Let Home Manager install and manage itself.
-    git.enable = true;
     gpg.enable = true;
+    ssh = {
+      enable = true; # https://mynixos.com/home-manager/options/programs.ssh
+      userKnownHostsFile = "~/.ssh/user_known_hosts";
+      addKeysToAgent = "yes";
+      extraConfig = "# test";
+    };
+
     zsh = {
       enable = true;
       autocd = true;
@@ -448,7 +453,32 @@
       }));
     };
 
+    git = {
+      enable = true;
+      lfs.enable = true;
+      signing.key = "TBD";
 
+      extraConfig = builtins.fromTOML (builtins.readFile (pkgs.substitute {
+        name = "git-conf";
+        src = ./config/git.conf;
+        isExecutable = false;
+        substitutions =
+          ["--subst-var-by" "_bat_" "${lib.getExe pkgs.bat}"]
+          ++ ["--subst-var-by" "_homedir_" config.home.homeDirectory];
+      }));
+    };
+  };
+
+  services = {
+    gpg-agent = {
+      enable = true; # https://mynixos.com/home-manager/options/services.gpg-agent
+      enableZshIntegration = true;
+      extraConfig = "";
+      enableSshSupport = true;
+      # pinentryPackage =
+      # sshKeys = [];
+    };
+    ssh-agent.enable = true; # https://mynixos.com/home-manager/options/services.ssh-agent
 
   };
 }
