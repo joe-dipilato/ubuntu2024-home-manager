@@ -27,6 +27,23 @@
     MMS_HOME= "~/mms";
   };
 
+  home.shellAliases = {
+      bazel = "bazelisk";
+      update = "home-manager switch --flake ~/repos/ubuntu2024-home-manager --impure";
+      cat = "bat";
+      pcat = "prettybat --style=full";
+      # _cat = "$(whereis cat | cut -f2 -d' ')";
+      grep = "rg --no-line-number";
+      pgrep = "batgrep --no-follow";
+      # _grep = "$(whereis grep | cut -f2 -d' ')";
+      man = "BAT_THEME='Monokai Extended' batman";
+      # _man = "$(whereis man | cut -f2 -d' ')";
+      # watch = "batwatch --watcher=entr";
+      # _watch = "$(whereis watch | cut -f2 -d' ')";
+      diff = "batdiff";
+      # _diff = "$(whereis diff | cut -f2 -d' ')";
+  };
+
   ################################################################################
   # PACKAGES
   ################################################################################
@@ -182,6 +199,8 @@
     jless # json pager
     jo # create json objects
     jqp # TUI for exploring jq
+    bazelisk
+
     # TODO: kmon -  Linux Kernel Manager and Activity Monitor
     # TODO: lesspipe
     # TODO: libva-utils
@@ -317,19 +336,7 @@
         }
       ];
       shellAliases = {
-        update = "sudo ${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --flake ~/repos/nixos-config --impure";
-        cat = "bat";
-        pcat = "prettybat --style=full";
-        _cat = "$(whereis cat | cut -f2 -d' ')";
-        grep = "rg --no-line-number";
-        pgrep = "batgrep --no-follow";
-        _grep = "$(whereis grep | cut -f2 -d' ')";
-        man = "BAT_THEME='Monokai Extended' batman";
-        _man = "$(whereis man | cut -f2 -d' ')";
-        watch = "batwatch --watcher=entr";
-        _watch = "$(whereis watch | cut -f2 -d' ')";
-        diff = "batdiff";
-        _diff = "$(whereis diff | cut -f2 -d' ')";
+
       };
       oh-my-zsh = {
         enable = true;
@@ -457,108 +464,6 @@
           ++ ["--subst-var-by" "_homedir_" config.home.homeDirectory];
       }));
     };
-
-    ############################################################
-    # VSCode
-    ############################################################
-    vscode = {
-      enable = false;
-
-      mutableExtensionsDir = true;
-      enableUpdateCheck = false;
-      enableExtensionUpdateCheck = false;
-
-      extensions = with pkgs.open-vsx;
-        [
-          # https://raw.githubusercontent.com/nix-community/nix-vscode-extensions/master/data/cache/open-vsx-latest.json
-          jnoortheen.nix-ide
-        ]
-        ++ (with pkgs.vscode-marketplace; [
-          # https://raw.githubusercontent.com/nix-community/nix-vscode-extensions/master/data/cache/vscode-marketplace-latest.json
-          # Utils
-          ms-kubernetes-tools.vscode-kubernetes-tools
-          hediet.vscode-drawio
-          # atlassian.atlascode
-          mongodb.mongodb-vscode
-          ibm.output-colorizer
-          lihui.vs-color-picker
-          kamikillerto.vscode-colorize
-          gruntfuggly.todo-tree
-
-          # Git
-          github.vscode-pull-request-github
-          eamodio.gitlens
-          victormejia.one-monokai-darker
-
-          # Essentials
-          bbenoist.nix
-          esbenp.prettier-vscode
-          streetsidesoftware.code-spell-checker
-          alefragnani.project-manager
-          felipecaputo.git-project-manager
-          ms-vscode-remote.remote-ssh
-          ms-vscode-remote.vscode-remote-extensionpack
-          alefragnani.bookmarks
-          fabiospampinato.vscode-diff
-          codeium.codeium
-          mechatroner.rainbow-csv
-          vscodevim.vim
-          # asvetliakov.vscode-neovim
-          ms-vscode.hexeditor
-          # BazelBuild.vscode-bazel
-
-          # UI
-          usernamehw.errorlens
-          naumovs.color-highlight
-          pkief.material-icon-theme
-          nothlng.one-monokai-python
-
-          # Markdown
-          davidanson.vscode-markdownlint
-          yzhang.markdown-all-in-one
-          shd101wyy.markdown-preview-enhanced
-          bierner.markdown-emoji
-          bierner.markdown-checkbox
-          lextudio.restructuredtext
-          zaaack.markdown-editor
-
-          # Config Files
-          redhat.vscode-yaml
-          mikestead.dotenv
-          redhat.vscode-xml
-          dotjoshjohnson.xml
-          tamasfe.even-better-toml
-
-          # Bash
-          mkhl.shfmt
-          editorconfig.editorconfig
-          timonwong.shellcheck
-          mads-hartmann.bash-ide-vscode
-
-          # Python
-          ms-python.python
-          ms-python.debugpy
-          ms-python.vscode-pylance
-          ms-python.isort
-          visualstudioexptteam.vscodeintellicode
-          ms-python.black-formatter
-          ms-python.pylint
-
-          # other
-          kdl-org.kdl
-
-          # ryanluker.vscode-coverage-gutters
-        ]);
-
-      userSettings = builtins.fromJSON (builtins.readFile (pkgs.substitute {
-        name = "vscode-settings";
-        src = ./config/vscode-settings.json;
-        isExecutable = false;
-        substitutions =
-          ["--subst-var-by" "_homedir_" config.home.homeDirectory];
-      }));
-    };
-
   };
 
 

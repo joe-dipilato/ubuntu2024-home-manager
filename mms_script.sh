@@ -1,3 +1,20 @@
+#!/usr/bin/env bash
+
+mms_repo () {
+    if ! [ -r "$MMS_HOME/.git" ]; then
+        echo "Cloning mms"
+        if ! git clone git@github.com:10gen/mms "$MMS_HOME"; then
+            echo "If you got an error about not having the correct access rights,"
+            echo "make sure you requested access to 10gen Cloud in MANA"
+            echo "(check for an email from your lead when you started)"
+            exit 1
+        fi
+    else
+        echo "You already have a clone of mms so no git operations ran"
+    fi
+}
+
+
 # _github_ensure_known_hosts () {
 #     echo "Ensuring github.com is in your SSH known hosts"
 #     if ! grep -q github.com ~/.ssh/known_hosts; then
@@ -16,19 +33,16 @@
 #     fi
 # }
 
-mms_repo () {
-    if ! [ -r "$MMS_HOME/.git" ]; then
-        echo "Cloning mms"
-        if ! git clone git@github.com:10gen/mms "$MMS_HOME"; then
-            echo "If you got an error about not having the correct access rights,"
-            echo "make sure you requested access to 10gen Cloud in MANA"
-            echo "(check for an email from your lead when you started)"
-            exit 1
-        fi
-    else
-        echo "You already have a clone of mms so no git operations ran"
-    fi
-}
+# Just use nix?
+# bazelisk_setup () {
+#     if [ "${ONBOARDING_NO_LOCAL_CLOUD:-}" != '1' ]; then
+#         bazelrc_local_setup
+#     fi
+#     echo "Installing/updating bazelisk"
+#     curl --location --output ~/bin/bazel --silent --show-error --fail "https://github.com/bazelbuild/bazelisk/releases/download/v1.18.0/bazelisk-linux-amd64"
+#     chmod +x ~/bin/bazel
+# }
+
 
 # Just use /usr/local/bin ? just used for bazel install path?
 homebin () {
@@ -202,15 +216,6 @@ EOF
         echo "Found an existing .bazelrc.local and left it alone"
         echo "~/mms/scripts/preonboarding/modules/bazelrc_local.sh contains current recommendations"
     fi
-}
-
-bazelisk_setup () {
-    if [ "${ONBOARDING_NO_LOCAL_CLOUD:-}" != '1' ]; then
-        bazelrc_local_setup
-    fi
-    echo "Installing/updating bazelisk"
-    curl --location --output ~/bin/bazel --silent --show-error --fail "https://github.com/bazelbuild/bazelisk/releases/download/v1.18.0/bazelisk-linux-amd64"
-    chmod +x ~/bin/bazel
 }
 
 onboarding () {
