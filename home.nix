@@ -457,7 +457,110 @@
           ++ ["--subst-var-by" "_homedir_" config.home.homeDirectory];
       }));
     };
+
+    ############################################################
+    # VSCode
+    ############################################################
+    vscode = {
+      enable = false;
+
+      mutableExtensionsDir = true;
+      enableUpdateCheck = false;
+      enableExtensionUpdateCheck = false;
+
+      extensions = with pkgs.open-vsx;
+        [
+          # https://raw.githubusercontent.com/nix-community/nix-vscode-extensions/master/data/cache/open-vsx-latest.json
+          jnoortheen.nix-ide
+        ]
+        ++ (with pkgs.vscode-marketplace; [
+          # https://raw.githubusercontent.com/nix-community/nix-vscode-extensions/master/data/cache/vscode-marketplace-latest.json
+          # Utils
+          ms-kubernetes-tools.vscode-kubernetes-tools
+          hediet.vscode-drawio
+          # atlassian.atlascode
+          mongodb.mongodb-vscode
+          ibm.output-colorizer
+          lihui.vs-color-picker
+          kamikillerto.vscode-colorize
+          gruntfuggly.todo-tree
+
+          # Git
+          github.vscode-pull-request-github
+          eamodio.gitlens
+          victormejia.one-monokai-darker
+
+          # Essentials
+          bbenoist.nix
+          esbenp.prettier-vscode
+          streetsidesoftware.code-spell-checker
+          alefragnani.project-manager
+          felipecaputo.git-project-manager
+          ms-vscode-remote.remote-ssh
+          ms-vscode-remote.vscode-remote-extensionpack
+          alefragnani.bookmarks
+          fabiospampinato.vscode-diff
+          codeium.codeium
+          mechatroner.rainbow-csv
+          vscodevim.vim
+          # asvetliakov.vscode-neovim
+          ms-vscode.hexeditor
+          # BazelBuild.vscode-bazel
+
+          # UI
+          usernamehw.errorlens
+          naumovs.color-highlight
+          pkief.material-icon-theme
+          nothlng.one-monokai-python
+
+          # Markdown
+          davidanson.vscode-markdownlint
+          yzhang.markdown-all-in-one
+          shd101wyy.markdown-preview-enhanced
+          bierner.markdown-emoji
+          bierner.markdown-checkbox
+          lextudio.restructuredtext
+          zaaack.markdown-editor
+
+          # Config Files
+          redhat.vscode-yaml
+          mikestead.dotenv
+          redhat.vscode-xml
+          dotjoshjohnson.xml
+          tamasfe.even-better-toml
+
+          # Bash
+          mkhl.shfmt
+          editorconfig.editorconfig
+          timonwong.shellcheck
+          mads-hartmann.bash-ide-vscode
+
+          # Python
+          ms-python.python
+          ms-python.debugpy
+          ms-python.vscode-pylance
+          ms-python.isort
+          visualstudioexptteam.vscodeintellicode
+          ms-python.black-formatter
+          ms-python.pylint
+
+          # other
+          kdl-org.kdl
+
+          # ryanluker.vscode-coverage-gutters
+        ]);
+
+      userSettings = builtins.fromJSON (builtins.readFile (pkgs.substitute {
+        name = "vscode-settings";
+        src = ./config/vscode-settings.json;
+        isExecutable = false;
+        substitutions =
+          ["--subst-var-by" "_homedir_" config.home.homeDirectory];
+      }));
+    };
+
   };
+
 
   services = {
     gpg-agent = {
