@@ -14,7 +14,6 @@ mms_repo () {
     fi
 }
 
-
 # _github_ensure_known_hosts () {
 #     echo "Ensuring github.com is in your SSH known hosts"
 #     if ! grep -q github.com ~/.ssh/known_hosts; then
@@ -43,19 +42,17 @@ mms_repo () {
 #     chmod +x ~/bin/bazel
 # }
 
-
 # Just use /usr/local/bin ? just used for bazel install path?
-homebin () {
-    echo "Creating bin directory in $HOME if it doesn't exist"
-    [ -d ~/bin ] || mkdir ~/bin
-    if ! [[ ":$PATH:" == *":$HOME/bin:"* ]]; then
-        echo "Adding ~/bin to your path"
-        echo '' >> ~/.bash_profile
-        echo '[[ ":$PATH:" == *":$HOME/bin:"* ]] || export PATH=$PATH:$HOME/bin' >> ~/.bash_profile
-        export PATH=$PATH:$HOME/bin
-    fi
-}
-
+# homebin () {
+#     echo "Creating bin directory in $HOME if it doesn't exist"
+#     [ -d ~/bin ] || mkdir ~/bin
+#     if ! [[ ":$PATH:" == *":$HOME/bin:"* ]]; then
+#         echo "Adding ~/bin to your path"
+#         echo '' >> ~/.bash_profile
+#         echo '[[ ":$PATH:" == *":$HOME/bin:"* ]] || export PATH=$PATH:$HOME/bin' >> ~/.bash_profile
+#         export PATH=$PATH:$HOME/bin
+#     fi
+# }
 
 awsscratch () {
     # awscli

@@ -45,7 +45,7 @@ nix run home-manager/release-23.11 -- init --switch
 ```
 
 This will generate a flake.nix and a home.nix file in ~/.config/home-manager
- 
+
 - `~/.config/home-manager/home.nix`
 - `~/.config/home-manager/flake.nix`
 

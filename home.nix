@@ -30,18 +30,11 @@
   home.shellAliases = {
       bazel = "bazelisk";
       update = "home-manager switch --flake ~/repos/ubuntu2024-home-manager --impure";
-      cat = "bat";
       pcat = "prettybat --style=full";
-      # _cat = "$(whereis cat | cut -f2 -d' ')";
       grep = "rg --no-line-number";
       pgrep = "batgrep --no-follow";
-      # _grep = "$(whereis grep | cut -f2 -d' ')";
       man = "BAT_THEME='Monokai Extended' batman";
-      # _man = "$(whereis man | cut -f2 -d' ')";
-      # watch = "batwatch --watcher=entr";
-      # _watch = "$(whereis watch | cut -f2 -d' ')";
       diff = "batdiff";
-      # _diff = "$(whereis diff | cut -f2 -d' ')";
   };
 
   ################################################################################
