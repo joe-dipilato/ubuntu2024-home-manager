@@ -74,7 +74,6 @@
     age # Encryption tool
     sops # encryption management
     logrotate # rotate logs
-    # pipx # install python apps
     rsyslog # syslog rules
     glib # basic gnome tools e.g. gresource
     openssl
@@ -125,14 +124,6 @@
     # dive # A tool for exploring a docker image, layer contents, and discovering ways to shrink the size of your Docker/OCI image
     # TODO: Kubectx - Faster way to switch between clusters and namespaces in kubectl
     # TODO: kubie is an alternative to kubectx, kubens and the k on prompt modification script
-    # calico-cni-plugin
-    # calicoctl
-    # confd-calico
-    # calico-apiserver
-    # calico-app-policy
-    # calico-kube-controllers
-    # calico-pod2daemon
-    # calico-typha
     # TODO: bandwhich - Bandwidth utilization monitor
     # TODO: bmon - Bandwidth Monitor
     # ebtables
@@ -141,12 +132,10 @@
     # TODO: Termshark - A terminal user-interface for tshark, inspired by Wireshark
     # TODO: Trippy - combines the functionality of traceroute and ping and is designed to assist with the analysis of networking issues
 
-    # https://terminaltrove.com/categories/tui/
     ############################################################
     # Terminal Apps
     ############################################################
     dust # terminal disk usage tool
-    # tldr # [man] supplemental tool
     # ranger
     neofetch # system stats
     onefetch # git repo stats
@@ -296,7 +285,7 @@
       enable = true; # https://mynixos.com/home-manager/options/programs.ssh
       userKnownHostsFile = "~/.ssh/user_known_hosts";
       addKeysToAgent = "yes";
-      extraConfig = "# test";
+      # extraConfig = "# test";
     };
 
     zsh = {
