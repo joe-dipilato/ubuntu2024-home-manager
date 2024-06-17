@@ -19,10 +19,12 @@
     stateVersion = "23.11";
   };
 
+  # environment variables
   home.sessionVariables = {
     EDITOR = "code --wait";
     EZA_COLORS = "ex=92;1:cr=31;2:tm=2;3;9:do=94:im=95:vi=95:mu=95:lo=95:sc=32:gn=95:uR=31:gR=31:nb=2;36:nk=2;92:nm=2;33:ng=2;31:nt=2;31";
     BAT_THEME = "Monokai Extended";
+    MMS_HOME= "~/mms";
   };
 
   ################################################################################
@@ -245,12 +247,11 @@
     # Unsorted
     pavucontrol
     meson
-    pipewire
     # brightnessctl
     # gparted
     # qemu_kvm
     # sddm
-    #delta # diff tool
+    # delta # diff tool
     # dunk another git diff
 
 
