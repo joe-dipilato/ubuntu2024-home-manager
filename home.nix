@@ -70,6 +70,7 @@
     nvd # nix wrapper
     delta # diff tool
     file # file type display
+    drone-cli # drone.io cli
 
     ############################################################
     # Basic Utilities
@@ -107,7 +108,6 @@
     ethtool
     socat
     conntrack-tools
-    ebtables
     iptables
     wavemon # is a wireless device monitoring application
 
@@ -118,7 +118,7 @@
     kubernetes
     (wrapHelm kubernetes-helm {
       plugins = [
-=        kubernetes-helmPlugins.helm-diff
+        kubernetes-helmPlugins.helm-diff
       ];
     })
     helmfile
