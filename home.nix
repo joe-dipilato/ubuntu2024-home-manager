@@ -263,7 +263,7 @@
     # gparted
     # qemu_kvm
     # sddm
-    # delta # diff tool
+    delta # diff tool
     # dunk another git diff
 
 
@@ -456,8 +456,7 @@
         src = ./config/git.conf;
         isExecutable = false;
         substitutions =
-          ["--subst-var-by" "_bat_" "${lib.getExe pkgs.bat}"]
-          ++ ["--subst-var-by" "_homedir_" config.home.homeDirectory];
+          ["--subst-var-by" "_homedir_" config.home.homeDirectory];
       }));
     };
   };

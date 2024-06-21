@@ -183,6 +183,7 @@ onboarding () {
     elif ! grep -q "export BAZEL_TELEMETRY" ~/.zshenv; then
         echo 'export BAZEL_TELEMETRY=0' >> ~/.zshenv  # won't have access to telemetry service
     fi
+    bazelrc_local_setup
     # cd "$MMS_HOME" || exit 1
     # bazel run //scripts/onboarding
 }

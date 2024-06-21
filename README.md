@@ -28,6 +28,7 @@ nix-shell '<home-manager>' -A install
 
 ```shell
 echo '. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"' >> ~/.bashrc
+echo '. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"' >> ~/.zshrc
 ```
 
 ## enable flakes
@@ -66,5 +67,8 @@ git config --global user.email "joe.dipilato@mongodb.com"
 nix-channel --update
 nix flake update
 home-manager switch --flake .
+```
+
+```shell
 # nix-collect-garbage -d
 ```
