@@ -68,6 +68,7 @@
     gh # github
     lsof #
     nvd # nix wrapper
+    delta # diff tool
     file # file type display
 
     ############################################################
@@ -79,7 +80,6 @@
     libvirt #
     xdg-utils #
     pandoc # doc converter
-    # home-manager # Nix Home Manager
     python312 #
     nixd # Nix language server
     scowl # dictionary wordlist
@@ -100,14 +100,6 @@
     kitty # terminal editor
     fzf # fuzzy finder
     fzf-zsh # .
-    zsh-syntax-highlighting
-    zsh-navigation-tools
-    zsh-fzf-tab
-    zsh-forgit
-    zsh-fast-syntax-highlighting
-    zsh-completions
-    zsh-autosuggestions
-    zsh-autopair
 
     ############################################################
     # Networking
@@ -115,40 +107,29 @@
     ethtool
     socat
     conntrack-tools
+    ebtables
+    iptables
     wavemon # is a wireless device monitoring application
-    helmfile
 
     ############################################################
     # Cluster
     ############################################################
-    # crun #
-    # kubectl # container management
     k9s # kubernetes explorer
     kubernetes
-    # kompose
-    kubernetes-helm
-    # cri-tools
-    # cfssl
+    (wrapHelm kubernetes-helm {
+      plugins = [
+=        kubernetes-helmPlugins.helm-diff
+      ];
+    })
+    helmfile
     podman # container tool
     podman-tui # podman tui
-    # ctop # Container metrics and monitoring
-    # TODO: kdash - Kubernetes dashboard app
-    # dive # A tool for exploring a docker image, layer contents, and discovering ways to shrink the size of your Docker/OCI image
-    # TODO: Kubectx - Faster way to switch between clusters and namespaces in kubectl
-    # TODO: kubie is an alternative to kubectx, kubens and the k on prompt modification script
-    # TODO: bandwhich - Bandwidth utilization monitor
-    # TODO: bmon - Bandwidth Monitor
-    # ebtables
-    # iptables
-    # TODO: ngrok - Reverse proxy for sharing localhost
-    # TODO: Termshark - A terminal user-interface for tshark, inspired by Wireshark
-    # TODO: Trippy - combines the functionality of traceroute and ping and is designed to assist with the analysis of networking issues
 
     ############################################################
     # Terminal Apps
     ############################################################
     dust # terminal disk usage tool
-    # ranger
+    tealdeer # [tldr] / [man] alternate
     neofetch # system stats
     onefetch # git repo stats
     cpufetch # cpu stats
@@ -156,36 +137,21 @@
     lazygit # git tool
     angle-grinder # allows you to parse, aggregate, sum, average, min/max, percentile, and sort your data
     aria2 # downloader
-    # TODO: Austin / austin-tui - pyython profiler
     calcure # Modern TUI calendar and task manager with customizable interface
-    # TODO: buku - Bookmark manager
-    # TODO: clinfo
-    # TODO: ddgr - Search the web from the terminal
     difftastic # (vs diff)
     diff-so-fancy # (vs diff)
     direnv # (load environment variables depending on the current directory)
     drill # vs dig
     dog # vs dig
-    # dua-cli # Disk usage analyzer and monitor (better du)
     ncdu # better du
     dust # better du
     duf # [df] replacement
-    # TODO: elia = A snappy, keyboard-centric terminal user interface for interacting with large language models
-    # TODO: Euporie is a terminal based interactive computing environment for Jupyter
-    # TODO: exiftool - Reading + writing metadata
     fd # [find] replacement
-    # TODO: fdupes - Duplicate file finder
-    # TODO: Fjira is a powerful command-line tool designed to simplify your interactions with Jira
     fq # (like jq, but for binary)
     frogmouth # Markdown viewer / browser for your terminal
     fx # a terminal JSON viewer and a JSON processor
-    # TODO: gdu
-    # TODO: glances - Resource monitor + web and API
-    # TODO: glow = markdown terminal view
     gpg-tui # Terminal User Interface for GnuPG
     gping # (better ping)
-    # TODO: Hex Editors: HT Editor -> biew -> dhex -> hexedit
-    # TODO: Hexabyte - tui hex editor
     htmlq # (like jq, but for HTML)
     httpie # (better curl)
     jc # convert tool output to json
@@ -193,49 +159,14 @@
     jo # create json objects
     jqp # TUI for exploring jq
     bazelisk
-
-    # TODO: kmon -  Linux Kernel Manager and Activity Monitor
-    # TODO: lesspipe
-    # TODO: libva-utils
-    # TODO: LNAV -- The Logfile Navigator
-    # TODO: miller (“like awk/sed/cut/join/sort for CSV/TSV/JSON/JSON lines”)
     most # better less
-    # TODO: mtr - traceroute
-    # TODO: neoss aims to replace usual ss command for basic usage. It provides a list of in-use TCP and UDP sockets with their respective statistics
-    nethack
-    # TODO: NetHack - dungeon crawler
-    # play # TUI for sed awk grep
-    # TODO: plocate (locate)
     procs # [ps] replacement
-    # TODO: PuDB: a console-based visual debugger for Python
     rm-improved # [rm] replacement
-    # TODO: sclack - tui slack
     sd # [sed] replacement
     systemctl-tui # (worse than sysz?)
     sysz # A fzf terminal UI for systemctl
-    # TODO: topgrade
-    # TODO: tre - Directory hierarchy (better tree)
-    # TODO: vdpauinfo
-    # TODO: vidir allows editing of the contents of a directory in a text editor
-    # TODO: visidata (“an interactive multitool for tabular data”)
     wtf # wtfutil - personal information dashboard for your terminal # TODO: configure
-    # TODO: xsv (a command line tool for csv files, from burntsushi)
-    # TODO: hexyl (xxd, od)
-    yewtube # forked from mps-youtube , is a Terminal based YouTube player and downloader
-    # logshark # json log viewer
-    # nemu - ncurses-based TUI for QEMU
-    # neoss - User-friendly and detailed socket statistics with a TUI.
-    # netop - A network topology visualizer.
-    # openapi-tui - Browse and run APIs defined with OpenAPI v3.0 in the TUI
-    # pathos - A terminal interface for editing and managing PATH environment variables.
     oxker # A simple TUI to view & control docker/podman containers.
-    # radare2 # unix-like reverse engineering framework and command-line toolset.
-    # rizin # like radare2
-    # sc-im - An ncurses spreadsheet program for terminal
-    # sshs - Terminal user interface for SSH
-    # tailspin # A log file highlighter
-    # taskwarrior-tui # A terminal user interface for taskwarrior
-    # tig # Text-mode interface for git
 
     ############################################################
     # Editors
@@ -243,10 +174,6 @@
     neovim # editor
     vim # editor
     alejandra # formatter
-
-    ############################################################
-    # Graphical
-    sxiv # image viewer
 
     ############################################################
     # FONTS
@@ -257,15 +184,7 @@
 
     ############################################################
     # Unsorted
-    pavucontrol
     meson
-    # brightnessctl
-    # gparted
-    # qemu_kvm
-    # sddm
-    delta # diff tool
-    # dunk another git diff
-
 
   ];
 
