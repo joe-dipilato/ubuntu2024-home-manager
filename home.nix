@@ -24,7 +24,7 @@
     EDITOR = "code --wait";
     EZA_COLORS = "ex=92;1:cr=31;2:tm=2;3;9:do=94:im=95:vi=95:mu=95:lo=95:sc=32:gn=95:uR=31:gR=31:nb=2;36:nk=2;92:nm=2;33:ng=2;31:nt=2;31";
     BAT_THEME = "Monokai Extended";
-    MMS_HOME= "~/mms";
+    MMS_HOME= "/home/ubuntu/mms";
   };
 
   home.shellAliases = {
@@ -308,6 +308,9 @@
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
+      sessionVariables = {
+        MMS_HOME= "/home/ubuntu/mms";
+      };
 
       initExtra = builtins.readFile (pkgs.substitute {
         name = "extra-init";

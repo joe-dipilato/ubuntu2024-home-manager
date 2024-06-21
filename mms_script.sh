@@ -14,45 +14,6 @@ mms_repo () {
     fi
 }
 
-# _github_ensure_known_hosts () {
-#     echo "Ensuring github.com is in your SSH known hosts"
-#     if ! grep -q github.com ~/.ssh/known_hosts; then
-#         echo "Adding github.com server SSH key"
-#         mkdir -p ~/.ssh
-#         echo 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=' \
-#             >> ~/.ssh/known_hosts
-#     fi
-# }
-
-# awscli () {
-#     # dependencies
-#     homebin
-#     if [ "$(command -v aws)"  == "" ]; then
-#       sudo apt install linux-aws
-#     fi
-# }
-
-# Just use nix?
-# bazelisk_setup () {
-#     if [ "${ONBOARDING_NO_LOCAL_CLOUD:-}" != '1' ]; then
-#         bazelrc_local_setup
-#     fi
-#     echo "Installing/updating bazelisk"
-#     curl --location --output ~/bin/bazel --silent --show-error --fail "https://github.com/bazelbuild/bazelisk/releases/download/v1.18.0/bazelisk-linux-amd64"
-#     chmod +x ~/bin/bazel
-# }
-
-# Just use /usr/local/bin ? just used for bazel install path?
-# homebin () {
-#     echo "Creating bin directory in $HOME if it doesn't exist"
-#     [ -d ~/bin ] || mkdir ~/bin
-#     if ! [[ ":$PATH:" == *":$HOME/bin:"* ]]; then
-#         echo "Adding ~/bin to your path"
-#         echo '' >> ~/.bash_profile
-#         echo '[[ ":$PATH:" == *":$HOME/bin:"* ]] || export PATH=$PATH:$HOME/bin' >> ~/.bash_profile
-#         export PATH=$PATH:$HOME/bin
-#     fi
-# }
 
 awsscratch () {
     # awscli
@@ -222,9 +183,8 @@ onboarding () {
     elif ! grep -q "export BAZEL_TELEMETRY" ~/.zshenv; then
         echo 'export BAZEL_TELEMETRY=0' >> ~/.zshenv  # won't have access to telemetry service
     fi
-    bazelisk_setup
-    cd "$MMS_HOME"
-    ~/bin/bazel run //scripts/onboarding
+    # cd "$MMS_HOME" || exit 1
+    # bazel run //scripts/onboarding
 }
 
 onboarding
