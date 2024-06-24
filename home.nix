@@ -201,10 +201,6 @@
     install -m 600 ${config.home.homeDirectory}/.cache/known_hosts ${config.home.homeDirectory}/.ssh/user_known_hosts
   '';
 
-  xdg.configFile = {
-    "kitty/kitty.session.conf".source = ./config/kitty.session.conf;
-  };
-
   systemd.user.startServices = "sd-switch";
 
   ################################################################################
@@ -263,20 +259,6 @@
           isExecutable = false;
           substitutions = ["--subst-var-by" "_homedir_" config.home.homeDirectory];
         }));
-      };
-    };
-
-    kitty = {
-      enable = true;
-      extraConfig = builtins.readFile (pkgs.substitute {
-        name = "extra-init";
-        src = ./config/kitty.conf;
-        isExecutable = true;
-        substitutions = ["--subst-var-by" "_homedir_" config.home.homeDirectory];
-      });
-      font.name = "FiraCode Nerd Font Propo";
-      shellIntegration = {
-        enableZshIntegration = true;
       };
     };
 

@@ -24,22 +24,22 @@ awsscratch () {
     access_key=""
     secret_key=""
     keys_from_conf_local_secure=""
-    cat $conf_local_secure
+    cat "$conf_local_secure"
     if [ -r "$conf_local_secure" ]; then
         echo "Reading keys from existing conf-local-secure.properties"
         while read -r line; do
             key="$(cut -f 1 -d = <<< $line)"
             value="$(cut -f 2 -d = <<< $line)"
-            echo $key
-            echo $value
+            echo "$key"
+            echo "$value"
             if [ "${key}" = "local.aws.accessKey" ]; then
                 access_key="${value}"
             elif [ "${key}" = "local.aws.secretKey" ]; then
                 secret_key="${value}"
             fi
         done < "$conf_local_secure"
-        echo $access_key
-        echo $secret_key
+        echo "$access_key"
+        echo "$secret_key"
         keys_from_conf_local_secure="1"
     elif [ -n "${ONBOARDING_AWS_ACCESS_KEY:-}" ]; then
         # Automated testing
