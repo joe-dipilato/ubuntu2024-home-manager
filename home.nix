@@ -92,6 +92,7 @@
     openssl
     gnumake
     rpcbind # needed for nfs
+    clang # c compiler
 
     ############################################################
     # Terminal Emulator / Shell tools

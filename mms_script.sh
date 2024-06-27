@@ -14,6 +14,10 @@ mms_repo () {
     fi
 }
 
+root_required_packages () {
+    sudo apt install -y \
+        clang=1:14.0-55~exp2
+}
 
 awsscratch () {
     # awscli
